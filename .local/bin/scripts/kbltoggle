@@ -1,0 +1,8 @@
+#!/bin/sh
+# This will toggle between the US Qwerty and Workman layouts.
+
+## Get current layout
+now="$(setxkbmap -query | grep variant)"
+
+[ "${now##* }" = "workman" ] && setxkbmap -layout us
+[ -z "${now##* }" ] && setxkbmap -variant workman

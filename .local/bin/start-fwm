@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+wm="frankenwm"
+ff="/tmp/frankenwm.fifo"
+[ -p $ff ] || mkfifo -m 600 "$ff"
+
+# Keep wm alive
+## There has to be a better way to do this, 
+## but this was the only way I could make this work
+while true; do
+	sleep 999999999;
+done < "$ff" &
+
+# pass output to fifo
+"$wm" > "$ff"

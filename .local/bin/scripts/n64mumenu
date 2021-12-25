@@ -1,0 +1,4 @@
+#!/bin/sh
+ROM_DIR="/hd/Games/N64 Games/"
+
+cd "$ROM_DIR" ; ls | dmenu -bw 2 -c -l 10 | sed 's/\-/\\\-/g ; s/ /\\\ /g' | xargs -r mupen64plus -
