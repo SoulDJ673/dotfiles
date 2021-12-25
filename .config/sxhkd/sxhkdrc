@@ -1,0 +1,17 @@
+XF86Audio{Lower,Raise}Volume
+	pamixer -{d,i} 5 ; kill -44 $(pidof dwmblocks)
+XF86AudioMute
+    pamixer -t ; kill -44 $(pidof dwmblocks)
+XF86AudioMicMute
+    pamixer --source 1 -t
+
+super + o ; {e,m}
+	st -e {nvim,neomutt}
+super + o ; {d,w,n,b}
+	{lightcord,$BROWSER,n64mumenu,bkmks}
+super + shift + o ; w
+	$BROWSER --private-window
+super + d ; {m,u}
+	{dmenumount,dmenuumount}
+ctrl + super + alt + space
+	sh $HOME/.local/bin/scripts/kbltoggle

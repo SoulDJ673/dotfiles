@@ -1,0 +1,17 @@
+## Source env vars and functions ##
+. "$HOME/.config/zsh/.zshenv"
+. "$HOME/.config/ksh/aliases.ksh"
+. "$HOME/.config/ksh/functions.ksh"
+
+## Options ##
+set -o vi
+
+## Change font & colors if in tty ##
+if [ "$TERM" = "linux" ]; then
+	setfont $HOME/.local/share/fonts/Iosevka\ Term\ Mono\ Nerd.psf;
+	sh $HOME/.cache/wal/colors-tty.sh;
+fi
+
+## Everything visible on startup ##
+afetch ;
+. "$HOME/.local/bin/polyglot.sh"
