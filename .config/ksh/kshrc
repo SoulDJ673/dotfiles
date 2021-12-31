@@ -1,5 +1,5 @@
 ## Source env vars and functions ##
-. "$HOME/.config/zsh/.zshenv"
+. "$HOME/.config/ksh/kshenv"
 . "$HOME/.config/ksh/aliases.ksh"
 . "$HOME/.config/ksh/functions.ksh"
 
