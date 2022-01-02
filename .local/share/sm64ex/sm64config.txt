@@ -1,0 +1,55 @@
+fullscreen false
+window_x 20
+window_y 40
+window_w 1322
+window_h 704
+vsync false
+texture_filtering 0
+master_volume 127
+music_volume 127
+sfx_volume 127
+env_volume 127
+key_a 0024 101a 1103 
+key_b 0031 1004 1101 
+key_start 0032 1006 ffff 
+key_l 002a 1009 1104 
+key_r 0036 100a 0013 
+key_z 0025 101b 002f 
+key_cup 0148 1003 ffff 
+key_cdown 0150 1000 ffff 
+key_cleft 014b 1002 ffff 
+key_cright 014d 1001 ffff 
+key_stickup 0011 ffff ffff 
+key_stickdown 001f ffff ffff 
+key_stickleft 001e ffff ffff 
+key_stickright 0020 ffff ffff 
+stick_deadzone 16
+rumble_strength 50
+precache true
+language 1
+skip_intro false
+enable_cheats false
+moonjump false
+invincible false
+infintie_lives false
+super_speed false
+controls false
+exit_anywhere false
+huge_mario false
+tiny_mario false
+coin 0
+hover_mode false
+moon_gravity false
+run_speed 0
+no_death_barrier false
+jumps_higher false
+speed_display false
+t_pose_float false
+cannon_anywhere false
+auto_wk false
+get_shell false
+get_bobomb false
+swift_swim false
+blj_anywhere 0
+play_as 0
+flyer false
