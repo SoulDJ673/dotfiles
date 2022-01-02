@@ -1,1 +1,109 @@
-/home/souldj673/src/bkmks
+#!/bin/sh
+
+## Rewrite so this can be used with Firefox based browsers.
+
+CLIMENU="sk"
+MENUPROMPT="Bookmark to open:"
+unset RUNCHROMIUM ;
+unset CHROMIUMDATA ;
+unset RUNFIREFOX ;
+unset FIREFOXDATA ;
+unset RUNSTANDALONE ;
+unset STANDALONEBKMKS ;
+unset RUNENV ; ## Run environment, 0 - TTY, 1 - CLI + X11, 2 - X11
+
+# These cannot be ~ , or + as it could cause breakage in the script.
+TLDREP=":tilda:" 
+COMREP=":comma:"
+
+bkmksHelp() { cat << EOF
+bkmks: Display and open browser bookmarks without needing to open the browser first.
+
+Options:
+   -c	                 Use bookmarks from Chromium (and derivatives)
+   -f                    Use bookmarks from Firefox (and derivatives)
+   -s [FILE1:FILE2...]   Use a standalone bookmark file(s) (Default: $HOME/.local/share/bkmks)
+
+   -h	                 Display this message
+
+
+Standalone Bookmark File:
+    The file should be in a '[NAME],[URL]' format, with each bookmark being on its own line.
+
+        foo,bar
+        foo2,bar2
+        foo3,bar3
+
+
+EOF
+}
+
+# Find & parse bookmarks
+## For Chromium based browsers
+grabChromium() {
+    echo $CHROMIUMDATA | tr ':' '\n' | while read p; do     ## POSIX sh doesn't define arrays, break up paths and read individually
+    cd $p;
+    find . -name "Bookmarks" | xargs -I '=' sed -e 's/\ \ \+//g' -e 's/\ *$//g;s/,$//g' = |
+        sed -e 's/~/'"$TLDREP"'/g;s/,/'"$COMREP"'/g' | grep -e '"name":' -e '"url":' -e '"type":' |
+        sed -e '/"type": ".*"/a ,' -e '/"url":\ ".*"/a \~' -e 's/^"name": /~/g' | tr -d '\n' |
+        sed 's/~\+/~/g' | tr '~' '\n' | sed -e '/"type": "folder"/d' -e 's/,\+/,/g;s/"url":\ //g;s/"//g' -e 's/type: url//g' >> /tmp/marks
+    done
+}
+
+## For Firefox based browsers (soon)
+grabFirefox() {
+    unset TMPFIL ;
+}
+
+## For standalone bookmark files
+grabStandalone() {
+    echo "$STANDALONEBKMKS" | tr ':' '\n' | while read p; do
+    cat "$p" >> /tmp/marks
+done
+}
+
+selectOpen() {
+    # This is just for spawning a menu in the correct environment
+    [ "$RUNENV" = "0" ] && cut -d ',' -f1 /tmp/marks | sed '/^\ *$/d' | "$CLIMENU" > /tmp/selectMark
+    [ "$RUNENV" = "1" ] && cut -d ',' -f1 /tmp/marks | sed '/^\ *$/d' | "$CLIMENU" > /tmp/selectMark
+    [ "$RUNENV" = "2" ] && cut -d ',' -f1 /tmp/marks | sed '/^\ *$/d' | dmenu -i -p "$MENUPROMPT" -l 10 > /tmp/selectMark
+
+    [ -s "/tmp/selectMark" ] || return ; # The script will exit if selectMark does not have a size greater than 0
+
+    # Reassociate selected name with its url and isolate url
+    URL="$(grep -f /tmp/selectMark /tmp/marks | cut -d ',' -f2 | sed 's/'"$TLDREP"'/~/g;s/'"$COMREP"'/,/g')" ;
+    [ ! "$RUNENV" = "0" ] && "$BROWSER" "$URL" ; # Open in browser if not in tty, then output to stdout
+    echo "$URL" ; # Just output to stdout if in tty
+}
+
+# Read argument flags
+while getopts "s:fch" o; do case "${o}" in
+    s) STANDALONEBKMKS="$OPTARG" grabStandalone || exit 1 ;;
+    f) grabFirefox || exit 1 ;;
+    c) grabChromium || error 3 ; exit ;;
+    h) bkmksHelp ; exit 0 ;;
+    *) bkmksHelp ; exit 1 ;;
+esac
+done;
+
+## Checks
+[ -z "$STANDALONEBKMKS" ] || RUNSTANDALONE=1 ;
+[ -e "$HOME/.local/share/bkmks" ] && RUNSTANDALONE=1 STANDALONEBKMKS="$HOME/.local/share/bkmks" ;
+[ -e "/usr/bin/brave" ] && CHROMIUMDATA="$HOME/.config/BraveSoftware/Brave-Browser/" RUNCHROMIUM=1 ;
+[ -e "/usr/bin/firefox" ] && FIREFOXDATA="$FIREFOXDATA:$HOME/.mozilla/firefox/" RUNFIREFOX=1 ;
+[ -e "/usr/bin/librewolf" ] && FIREFOXDATA="$FIREFOXDATA:$HOME/.librewolf/" RUNFIREFOX=1 ;
+[ -e "/usr/bin/chromium" ] && RUNCHROMIUM=1 ; # I can't recall where this stuff is kept
+[ -e "/usr/bin/google-chrome-stable" ] && RUNCHROMIUM=1 ;
+
+
+## Grab environment
+[ "$TERM" = "linux" ] && [ -z "$DISPLAY" ] && RUNENV=0 || RUNENV=2 ;
+[ "$TERM" != "linux" ] && RUNENV=1 ;
+
+[ -z "$RUNSTANDALONE" ] || grabStandalone ;
+[ -z "$RUNCHROMIUM" ] || grabChromium ;
+[ -z "$RUNFIREFOX" ] || grabFirefox ;
+selectOpen ;
+
+rm /tmp/marks ;
+rm /tmp/selectMark ;
