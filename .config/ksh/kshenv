@@ -5,7 +5,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 ## Other Vars ##
 export GOPATH="$GOPATH":"$HOME"/.local/bin
-export PATH="$PATH":~/.local/bin/:/usr/local/bin/:~/.local/bin/scripts/
+export PATH="$PATH":~/.local/bin:/usr/local/bin:~/.local/bin/scripts:~/.local/bin/scripts/statusbar:~/.local/share/cargo/bin
 
 export EDITOR="nvim"
 export BROWSER="librewolf"
