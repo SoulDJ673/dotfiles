@@ -1,0 +1,4 @@
+#!/bin/sh
+FILE="$HOME/.config/spectrwm/spectrwm.conf"
+
+sed -ibu 's/#\(.\{2\}\)\(.\{2\}\)\(.\{2\}\)$/rgb:\1\/\2\/\3/' $FILE
