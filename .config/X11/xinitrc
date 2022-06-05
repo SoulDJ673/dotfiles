@@ -8,7 +8,7 @@ xautolock -exit;  # Just in case it's already running for some reason
 xautolock -time 10 -locker slock &
 sxhkd &
 picom -b --experimental-backends &
-xwallpaper --zoom ~/pic/Wallpapers/winter-cabin-lake.jpg &
+bgs -z ~/pic/Wallpapers/hl-gordon-freeman-labcoat.jpg &
 # xrootgif ~/pic/JungleWaterfall.gif &
 unclutter &
 xbanish &
@@ -27,5 +27,6 @@ pidof -s runit &&
 
 #dwmblocks &
 #exec dbus-run-session dwm;
-sleep 0.5 && succade &
-exec dbus-run-session start-fwm;
+#sleep 0.5 && succade &
+#exec dbus-run-session start-fwm;
+exec dbus-run-session spectrwm;

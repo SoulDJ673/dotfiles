@@ -1,0 +1,26 @@
+#!/bin/sh
+
+## Are there any active connections?
+CONNECTIONS="$(sed '1d;/virbr./d' /proc/net/route)"
+[ -z "$CONNECTIONS" ] && echo "Disconnected" && exit 0;
+
+## Wired connections get priority
+WIRED="$(grep eth. /proc/net/route)"
+if [ -n "$WIRED" ]; then
+    echo " Ethernet"; 
+    if [ -e /tmp/wistat ]; then
+        rm /tmp/wistat;
+    fi
+    exit 0;
+fi
+
+## Check for wireless change
+WISTAT="$(grep wlan. /proc/net/route | cut -f2)"
+OLDSTAT="$(cat /tmp/wistat)"
+[ "$WISTAT" = "$OLDSTAT" ] && exit 0;
+
+## Output network name to statusbar
+NET="$(nmcli connection show --active | sed '1d;/virbr./d;')"
+echo "直 ${NET%%  *}";
+
+exit;
