@@ -17,10 +17,12 @@ fi
 ## Check for wireless change
 WISTAT="$(grep wlan. /proc/net/route | cut -f2)"
 OLDSTAT="$(cat /tmp/wistat)"
-[ "$WISTAT" = "$OLDSTAT" ] && exit 0;
+[ "$WISTAT" = "$OLDSTAT" ] && echo "直$(cat /tmp/winet)" && exit 0;
 
 ## Output network name to statusbar
 NET="$(nmcli connection show --active | sed '1d;/virbr./d;')"
 echo "直 ${NET%%  *}";
+echo "${NET%%  *}" > /tmp/winet;
+echo "$WISTAT" > /tmp/wistat;
 
 exit;
