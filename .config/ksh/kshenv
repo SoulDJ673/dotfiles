@@ -8,7 +8,8 @@ export GOPATH="$GOPATH":"$HOME"/.local/bin
 export PATH="$PATH":~/.local/bin:/usr/local/bin:~/.local/bin/scripts:~/.local/bin/scripts/statusbar:~/.local/share/cargo/bin
 
 export EDITOR="nvim"
-export BROWSER="librewolf"
+export BROWSER="firefox-developer-edition"
+export NET=""
 export GST_PLUGIN_FEATURE_RANK=vah264dec:MAX
 export QT_QPA_PLATFORMTHEME="gtk2"
 export QT_QPA_PLATFORM_PLUGIN_PATH="/usr/lib/qt/plugins"

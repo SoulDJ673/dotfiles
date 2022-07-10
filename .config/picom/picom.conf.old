@@ -1,0 +1,48 @@
+backend = "glx";
+# paint-on-overlay = true;
+dbe = true;
+glx-no-stencil = true;
+vsync = "none";
+unredir-if-possible = true;
+glx-swap-method = "copy";
+glx-no-rebind-pixmap = true;
+
+# Shadow
+shadow = true;
+shadow-radius = 7;
+shadow-offset-x = -7;
+shadow-offset-y = -7;
+shadow-exclude = [
+ "n:e:Notification",
+ "g:e:Synapse",
+ "g:e:Conky",
+ "n:w:*Firefox*",
+ "n:w:*Chromium*",
+ "n:w:*dockbarx*",
+ "n:w:*plank*",
+ "n:w:*oneko*",
+ "n:w:*virtualbox*",
+ "class_g ?= 'Notify-osd'",
+ "_GTK_FRAME_EXTENTS@:c"
+];
+
+# Opacity
+detect-client-opacity = true;
+# Menu and Inactice Opacity
+menu-opacity = 0.9;
+inactive-opacity = 1.0;
+
+# Fading
+fading = true;
+fade-delta = 4;
+fade-in-step = 0.03;
+fade-out-step = 0.05;
+# no-fading-openclose = true;
+# no-fading-destroyed-argb = true;
+fade-exclude = [ ];
+
+# Window type settings
+wintypes:
+{
+ tooltip = { shadow = false; };
+};

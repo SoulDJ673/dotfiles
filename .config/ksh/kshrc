@@ -13,6 +13,6 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 ## Everything visible on startup ##
-afetch ;
+pasfetch ;
 printf ">> $(shuf -n 1 $HOME/.local/share/doc/splashes.txt)\n";
 . "$HOME/.local/bin/polyglot.sh"

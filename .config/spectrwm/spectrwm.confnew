@@ -10,9 +10,9 @@ workspace_limit	= 9
 
 # Window Decoration
 # border_width		= 1
-color_focus		= rgb:{foreground.xrgba}
+color_focus		= #dabf9c
 # color_focus_maximized	= yellow
-color_unfocus		= rgb:{color1.xrgba}
+color_unfocus		= #6A4731
 # color_unfocus_maximized	= rgb:88/88/00
 region_padding	= 10
 tile_gap		= 10
@@ -26,27 +26,26 @@ tile_gap		= 10
 # disable_border		= 1
 
 # Bar Settings
- bar_enabled		= 1
+# bar_enabled		= 1
 # bar_enabled_ws[1]	= 1
 # bar_border_width	= 1
-bar_border[1]		= rgb:{color2.xrgba}
+bar_border[1]		= #725848
 # bar_border_unfocus[1]	= rgb:00/40/40
-bar_color[1]		= rgb:{background.xrgba}
+bar_color[1]		= #0a0a0a
 # bar_color_selected[1]	= rgb:00/80/80
-bar_font_color[1]	= rgb:{foreground.xrgba},rgb:{color1.xrgba},rgb:{color2.xrgba},rgb:{color3.xrgba},rgb:{color4.xrgba},rgb:{color5.xrgba},rgb:{color6.xrgba},rgb:{color7.xrgba}
+bar_font_color[1]	= #dabf9c
 # bar_font_color_selected	= black
-bar_font		= UW Ttyp0:pixelsize=12:antialias=true,Iosevka Nerd Font Mono:pixelsize=12:antialias=true,Symbola:pixelsize=14:antialias=true
-#bar_font_pua		= Symbola:pixelsize=14:antialias=true
-bar_action		= complete.sh
-bar_action_expand	= 1
+# bar_font		= xos4 Terminus:pixelsize=14:antialias=true
+# bar_font_pua		= Typicons:pixelsize=14:antialias=true
+# bar_action		= baraction.sh
+# bar_action_expand	= 0
 # bar_justify		= left
 # bar_format		= +N:+I +S <+D>+4<%a %b %d %R %Z %Y+8<+A+4<+V
-bar_format		= +@fg=1;[+@fg=0;+N+@fg=1;]+@fg=0; : +@fg=1;[+@fg=0;+L+@fg=1;]+@fg=0; +S +@fg=1;+F+@fg=0; +|C+W +|R+@fg=1;[ +@fg=3;%a+@fg=0; %b %d %T +@fg=1;]+@fg=0; +A
-#workspace_indicator	= listcurrent,listactive,markcurrent,printnames
+# workspace_indicator	= listcurrent,listactive,markcurrent,printnames
 # bar_at_bottom		= 1
 # stack_enabled		= 1
-clock_enabled		= 1
-clock_format		= %a %b %d %R %Z %Y
+# clock_enabled		= 1
+# clock_format		= %a %b %d %R %Z %Y
 # iconic_enabled	= 0
 # maximize_hide_bar	= 0
 # window_class_enabled	= 0

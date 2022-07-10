@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/souldj673/doc/dotfiles/.config/cordless'
+let g:netrw_dirhist_1='/home/souldj673/.cache/paru/clone/dot-bin'
+let g:netrw_dirhist_0='/home/souldj673/.cache/paru/clone/dot-bin/src'
+let g:netrw_dirhist_9='/home/souldj673/.cache/paru/clone/dot-bin/src/dot'
+let g:netrw_dirhist_8='/home/souldj673/.cache/paru/clone/dot-bin/src'
+let g:netrw_dirhist_7='/home/souldj673/.cache/paru/clone/dot-bin/src/dot'
+let g:netrw_dirhist_6='/home/souldj673/.cache/paru/clone/dot-bin/src'
+let g:netrw_dirhist_5='/home/souldj673/.cache/paru/clone/dot-bin'
+let g:netrw_dirhist_4='/home/souldj673/.librewolf/inavc4nf.default-release'
+let g:netrw_dirhist_3='/home/souldj673/doc/dotfiles/.local/bin'
