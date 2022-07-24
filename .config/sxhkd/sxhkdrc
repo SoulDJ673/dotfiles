@@ -17,3 +17,46 @@ super + d ; {m,u,w}
 	{dmenumount,dmenuumount,networkmanager_dmenu}
 ctrl + super + alt + space
 	sh $HOME/.local/bin/scripts/kbltoggle
+
+super + shift + Return
+	st
+super + r
+	dmenu_run
+
+## sxhkd Reload
+super + Escape
+	pkill -USR1 -x sxhkd
+
+## bspwm
+super + alt + r
+	bspc wm -r ## Reload
+super + alt + q
+  bspc quit && pkill panel-bar && pkill pulse-vol-watch.py && pkill xob 
+
+super + shift + c
+	bspc node -c ## Kill Window
+super + m
+	bspc desktop -l next ## Monacle
+super + Return
+	bspc node -s biggest.local ## Swap Master
+super + {t,s,f}
+	bspc node -t {tiled,floating,fullscreen}
+
+super + ctrl + {m,y}
+	bspc node -g {marked,sticky}
+
+super + {j,k}
+	bspc node -f {next,prev}.local.!hidden.window ## Cycle Windows
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local ## Cycle Desktops
+super + {grave,Tab}
+	bspc {node,desktop} -f last ## Focus Previous
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}' ## Go/Send to Desktop
+
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0} ## Grow Split
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0} ## Shrink Split
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0} ## Floating Control

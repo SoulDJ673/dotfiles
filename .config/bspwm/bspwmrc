@@ -1,0 +1,24 @@
+#! /bin/sh
+export PATH="$PATH:$HOME/.config/bspwm";
+export PANEL_FIFO="/tmp/bspwm/panel-fifo";
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+pulse-vol-watch.py | xob > /dev/null &
+panel &
+
+bspc monitor -d i ii iii iv v vi vii viii ix x
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config external_rules_command ~/.config/bspwm/scripts/master-tiling-layout.sh
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
